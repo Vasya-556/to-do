@@ -1,9 +1,10 @@
 import Image from "next/image";
+import { Tasks } from "@/src/components/index"
 
 export default function Home() {
   return (
     <>
-      <h1>Hello world!</h1>
+      <Tasks/>
     </>
   );
 }
