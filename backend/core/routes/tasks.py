@@ -35,6 +35,23 @@ def get_tasks(
 
     return query.all()
 
+@router.get("/{task_id}", response_model=TaskResponse)
+def get_task(
+        task_id: str,
+        db: Session = Depends(get_db)
+    ):
+    task = db.query(Task).filter(
+        Task.id == task_id
+    ).first()
+
+    if not task:
+        raise HTTPException(
+            status_code=404,
+            detail="Task not found"
+        )
+
+    return task
+
 @router.post("/", response_model=TaskResponse)
 def create_task(
         task: TaskCreate,
