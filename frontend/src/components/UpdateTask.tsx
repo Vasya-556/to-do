@@ -3,6 +3,10 @@ import { useState } from "react"
 import { taskService } from "@/src/services/index"
 import { useRouter } from "next/navigation"
 import { Task } from "@/src/types/index"
+import { Input } from "./ui/input"
+import { Textarea } from "./ui/textarea"
+import { Button } from "./ui/button"
+import { Label } from "./ui/label"
 
 type Props = {
     task: Task
@@ -39,38 +43,44 @@ const UpdateTask = ({
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
+        <form className="flex w-full max-w-md flex-col gap-4" onSubmit={handleSubmit}>
+            <Input
                 placeholder="Title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />
-            <textarea
+            <Textarea
                 placeholder="Description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
             />
-            <label>Priority:</label>
-            <input
-                type="number"
-                min={1}
-                max={10}
-                value={priority}
-                onChange={(e) => setPriority(Number(e.target.value))}
-            />
-            <input
+            <div className="flex flex-row gap-2">
+                <Label>Priority:</Label>
+                <Input
+                    type="number"
+                    min={1}
+                    max={10}
+                    value={priority}
+                    onChange={(e) => setPriority(Number(e.target.value))}
+                />
+            </div>
+            <Input
                 placeholder="Category"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
             />
-            <input
+            <Input
                 type="datetime-local"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
             />
-            <button>
+            <Button 
+                variant="outline"
+                type="submit"
+                className="bg-[var(--app-primary)] hover:bg-[var(--app-secondary)]"
+            >
                 Update
-            </button>
+            </Button>
         </form>
     )
 }

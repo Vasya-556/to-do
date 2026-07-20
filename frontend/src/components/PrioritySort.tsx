@@ -1,3 +1,11 @@
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue
+} from "@/src/components/ui/select"
+
 type Props = {
     sortPriority: "asc" | "desc" | undefined
     setSortPriority: (
@@ -10,14 +18,33 @@ const PrioritySort = ({
     setSortPriority
 }: Props) => {
     return (
-        <select
-            value={sortPriority ?? ""}
-            onChange={(e) => setSortPriority(e.target.value as "asc" | "desc" | undefined)}
+        <Select
+            value={sortPriority ?? "none"}
+            onValueChange={(value) => setSortPriority(
+                value === "none"
+                    ? undefined
+                    : value as "asc" | "desc"
+            )}
         >
-            <option value="">None</option>
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
-        </select>
+            <SelectTrigger className="w-40">
+                <SelectValue 
+                    render={() => {
+                        if (sortPriority === "asc") {
+                            return <span>Ascending</span>
+                        }
+                        else if (sortPriority === "desc"){
+                            return <span>Descending</span>
+                        }
+                        return <span>None</span>
+                    }}
+                />
+            </SelectTrigger>
+            <SelectContent>
+                <SelectItem value="none">None</SelectItem>
+                <SelectItem value="asc">Ascending</SelectItem>
+                <SelectItem value="desc">Descending</SelectItem>
+            </SelectContent>
+        </Select>
     )
 }
 

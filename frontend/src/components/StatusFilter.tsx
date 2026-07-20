@@ -1,3 +1,11 @@
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue
+} from "@/src/components/ui/select"
+
 type Props = {
     completed: "all" | "done" | "undone"
     setCompleted: (
@@ -10,19 +18,33 @@ const StatusFilter = ({
     setCompleted
 }: Props) => {
     return (
-        <select
+        <Select
             value={completed}
-            onChange={(e) => 
+            onValueChange={(value) => 
                 setCompleted(
-                    e.target.value as 
-                    "all" | "done" | "undone"
+                    value as "all" | "done" | "undone"
                 )
             }
         >
-            <option value="all">All</option>
-            <option value="done">Done</option>
-            <option value="undone">Undone</option>
-        </select>
+            <SelectTrigger className="w-40">
+                <SelectValue 
+                    render={() => {
+                        if (completed === "done") {
+                            return <span>Done</span>
+                        }
+                        else if (completed === "undone"){
+                            return <span>Undone</span>
+                        }
+                        return <span>All</span>
+                    }}
+                />
+            </SelectTrigger>
+            <SelectContent>
+                <SelectItem value="all">All</SelectItem>
+                <SelectItem value="done">Done</SelectItem>
+                <SelectItem value="undone">Undone</SelectItem>
+            </SelectContent>
+        </Select>
     )
 }
 

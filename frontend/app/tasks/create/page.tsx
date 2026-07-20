@@ -2,7 +2,9 @@ import { CreateTask as CreateTaskForm } from "@/src/components/index";
 
 const CreateTask = () => {
     return (
-        <CreateTaskForm/>
+        <div className="flex justify-center">
+            <CreateTaskForm/>
+        </div>
     )
 }
 

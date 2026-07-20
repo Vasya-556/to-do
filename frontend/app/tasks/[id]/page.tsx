@@ -14,9 +14,11 @@ const UpdateTask = async ({
     const task = await taskService.getTask(id)
 
     return (
-        <UpdateTaskForm
-            task={task}
-        />
+        <div className="flex justify-center">
+            <UpdateTaskForm
+                task={task}
+            />
+        </div>
     )
 }
 

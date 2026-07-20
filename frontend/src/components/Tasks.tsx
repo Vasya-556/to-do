@@ -48,35 +48,41 @@ const Tasks = () => {
     ])
 
     return (
-        <>
-            <SearchBar
-                search={search}
-                setSearch={setSearch}
-            />
-            <StatusFilter
-                completed={completed}
-                setCompleted={setCompleted}
-            />
-            <PrioritySort
-                sortPriority={sortPriority}
-                setSortPriority={setSortPriority}
-            />
+        <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center gap-4">
+                <SearchBar
+                    search={search}
+                    setSearch={setSearch}
+                />
+                <div className="flex gap-4">
+                    <StatusFilter
+                        completed={completed}
+                        setCompleted={setCompleted}
+                    />
+                    <PrioritySort
+                        sortPriority={sortPriority}
+                        setSortPriority={setSortPriority}
+                    />
+                </div>
+            </div>
 
-            {
-                tasks.map((task) => (
-                    <div
-                        key={task.id}
-                    >
-                        <Task
-                            task={task}
-                            onToggle={handleToggle}
-                            onDelete={handleDelete}
-                        />
-                        <br/>
-                    </div>
-                ))
-            }
-        </>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+                {
+                    tasks.map((task) => (
+                        <div
+                            className="w-[300px]"
+                            key={task.id}
+                        >
+                            <Task
+                                task={task}
+                                onToggle={handleToggle}
+                                onDelete={handleDelete}
+                            />
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
     )
 }
 
