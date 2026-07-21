@@ -26,7 +26,6 @@ const Tasks = () => {
             sortPriority
         )
         .then(setTasks)
-        console.log(tasks)
     }
 
     const handleToggle = async (id: string) => {
