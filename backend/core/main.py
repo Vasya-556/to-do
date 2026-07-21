@@ -13,7 +13,8 @@ core.include_router(tasks.router)
 core.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000"
+        "http://localhost:3000",
+        "https://to-do-ruddy-theta.vercel.app/"
     ],
     allow_credentials=False,
     allow_methods=[

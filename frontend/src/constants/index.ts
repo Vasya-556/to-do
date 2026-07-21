@@ -1,3 +1,3 @@
 export const config = {
-    baseURL: "http://localhost:8000"
+    baseURL: "https://to-do-ntq6.onrender.com/"
 }
