@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 from datetime import datetime
 from uuid import UUID
 
@@ -6,7 +6,7 @@ class TaskCreate(BaseModel):
     title: str
     description: str | None = None
     completed: bool = False
-    priority: int = 1
+    priority: int = Field(default=1, ge=1, le=10)
     category: str | None = None
     due_date: datetime | None = None
 
@@ -16,8 +16,9 @@ class TaskResponse(TaskCreate):
     created_at: datetime
     updated_at: datetime
 
-    class Config:
-        from_atributes = True
+    model_config = ConfigDict(
+        from_attributes = True
+    )
 
 class TaskUpdate(BaseModel):
     title: str | None = None
