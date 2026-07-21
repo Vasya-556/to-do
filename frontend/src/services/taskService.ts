@@ -22,7 +22,7 @@ const getTasks = (
 
     const query = params.toString()
     return fetcher<Task[]>({
-        url: `/tasks${query 
+        url: `/tasks/${query 
             ? `?${query}` 
             : ""}`,
         method: "GET"
