@@ -15,7 +15,7 @@
 
 # Description
 
-Full-stack task app.
+Full-stack task app on fastapi and next.js.
 
 # Setup
 
